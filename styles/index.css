@@ -61,7 +61,7 @@ thead {
 }
 
 table {
-  width: 90%;
+  width: 60%;
 }
 
 thead tr td {
@@ -103,8 +103,8 @@ thead tr td {
 .preloader-gif,
 .status-gif {
   margin: 2rem;
-  width: 7rem;
-  width: 7rem;
+  width: 5rem;
+  width: 5rem;
 }
 
 .status-gif_disabled {
@@ -129,10 +129,13 @@ ul.pages-list li {
 }
 
 @media screen and (max-width: 650px) {
-.preloader-gif,
-.status-gif {
-  margin: 1rem;
-  width: 3rem;
-  width: 3rem;
-}
+  table {
+    width: 90%;
+  }
+  .preloader-gif,
+  .status-gif {
+    margin: 1rem;
+    width: 3rem;
+    width: 3rem;
+  }
 }
