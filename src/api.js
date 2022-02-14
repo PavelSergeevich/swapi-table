@@ -1,10 +1,8 @@
-import { getTableFromSStorage } from "./renderTBody";
 
 let table = [];
 let residentArr = [];
-let planetObj = [];
+let arrayOfPlanetObj = [];
 let speciesArr = [];
-let tableToRender;
 
 async function getPlanet(url) {
   try {
@@ -17,7 +15,7 @@ async function getPlanet(url) {
     //create array of planet objects
     for (let key in planet) {
       if (planet[key].residents.length !== 0) {
-        planetObj.push(
+        arrayOfPlanetObj.push(
           Object.assign(
             {},
             { planet: planet[key].name, residents: planet[key].residents }
@@ -27,7 +25,7 @@ async function getPlanet(url) {
       }
     }
     //return result
-    return planetObj;
+    return arrayOfPlanetObj;
   } catch (err) {
     console.error("Error: ", err.message);
   } finally {
@@ -42,10 +40,10 @@ const getResidents = async (planet) => {
     let residentArray = [];
     // create array of residents for each planet
     for (let key in planet) {
-      await residentArray.push(planet[key].residents);
+      residentArray.push(planet[key].residents);
     }
     console.group("Loading residents...");
-    const rawUrls = await residentArray;
+    const rawUrls = residentArray;
     //concatenate urls in one array
     const urls = rawUrls.flat();
 
@@ -121,9 +119,9 @@ async function postTable(sourse) {
 
     console.info("Creating table...");
     //create array of objects for each resident with planet name
-    for (let key in planetObj) {
-      planetObj[key].residents.forEach((item) =>
-        table.push(Object.assign({}, { planet: planetObj[key].planet }))
+    for (let key in arrayOfPlanetObj) {
+      arrayOfPlanetObj[key].residents.forEach((item) =>
+        table.push(Object.assign({}, { planet: arrayOfPlanetObj[key].planet }))
       );
     }
     //add residentName and spiceis
